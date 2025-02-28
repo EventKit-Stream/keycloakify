@@ -1,0 +1,11 @@
+body.kcBodyClass {
+    background: url(./assets/cool-background.png) no-repeat center center fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.kcFormCardClass {
+    background-color: transparent;
+    border: 0px;
+}

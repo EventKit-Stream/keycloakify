@@ -3,10 +3,18 @@ import type { ClassKey } from "keycloakify/login";
 import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
-import Template from "keycloakify/login/Template";
-const UserProfileFormFields = lazy(
-    () => import("keycloakify/login/UserProfileFormFields")
-);
+import Template from "./Template";
+
+import "@radix-ui/themes/styles.css";
+import "./main.css";
+// ...
+
+// const UserProfileFormFields = lazy(
+//     () => import("./UserProfileFormFields")
+// );
+
+const Login = lazy(() => import("./pages/Login"));
+// const LoginUsername = lazy(() => import("./pages/LoginUsername"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -19,6 +27,21 @@ export default function KcPage(props: { kcContext: KcContext }) {
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
+                     // ...
+                    case "login.ftl": return (
+                        <Login
+                            {...{ kcContext, i18n, classes }}
+                            Template={Template}
+                            doUseDefaultCss={true}
+                        />
+                    );
+                    // case "login-username.ftl": return (
+                    //     <LoginUsername
+                    //         {...{ kcContext, i18n, classes }}
+                    //         Template={Template}
+                    //         doUseDefaultCss={true}
+                    //     />
+                    // );
                     default:
                         return (
                             <DefaultPage
@@ -37,4 +60,8 @@ export default function KcPage(props: { kcContext: KcContext }) {
     );
 }
 
-const classes = {} satisfies { [key in ClassKey]?: string };
+const classes = {
+    kcHtmlClass:"",
+    kcBodyClass:"",
+
+} satisfies { [key in ClassKey]?: string };
