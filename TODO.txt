@@ -1,11 +1,18 @@
+npx keycloakify add-story
+npx keycloakify eject-page
+https://my-theme.keycloakify.dev
+docker run .....
+
 [x]: Template.tsx (Layout common to every page)
-[ ]: UserProfileFormFields.tsx (Renders the form of the register.ftl, login-update-profile.ftl, update-email.ftl and idp-review-user-profile.ftl)
-[ ]: login.ftl
-[ ]: login-username.ftl
+[x]: UserProfileFormFields.tsx (Renders the form of the register.ftl, login-update-profile.ftl, update-email.ftl and idp-review-user-profile.ftl)
+[x]: login.ftl
+    [ ]: Better separation for With Providers
+[x]: login-username.ftl
+    [ ]: Better separation for With Providers
 [ ]: login-password.ftl
 [ ]: webauthn-authenticate.ftl
 [ ]: webauthn-register.ftl
-[ ]: register.ftl
+[x]: register.ftl
 [ ]: info.ftl
 [ ]: error.ftl
 [ ]: login-reset-password.ftl
@@ -14,15 +21,15 @@
 [ ]: login-oauth2-device-verify-user-code.ftl
 [ ]: login-oauth-grant.ftl
 [ ]: login-otp.ftl
-[ ]: login-update-profile.ftl
+[x]: login-update-profile.ftl
 [ ]: login-update-password.ftl
 [ ]: login-idp-link-confirm.ftl
 [ ]: login-idp-link-email.ftl
 [ ]: login-page-expired.ftl
 [ ]: login-config-totp.ftl
 [ ]: logout-confirm.ftl
-[ ]: idp-review-user-profile.ftl
-[ ]: update-email.ftl
+[x]: idp-review-user-profile.ftl
+[x]: update-email.ftl
 [ ]: select-authenticator.ftl
 [ ]: saml-post-form.ftl
 [ ]: delete-credential.ftl

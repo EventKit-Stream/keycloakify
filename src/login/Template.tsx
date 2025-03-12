@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { clsx } from "keycloakify/tools/clsx";
+// import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
@@ -7,10 +7,14 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-
-import { Avatar, Badge, Box, Button, Card, DataList, Flex, Heading, IconButton, Link, ScrollArea, Text, Theme, ThemePanel, Tooltip } from "@radix-ui/themes";
 import { Icon } from "@iconify/react";
-
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Divider } from "@heroui/divider";
+import { Select, SelectItem } from "@heroui/select";
+import { Chip } from "@heroui/chip";
+import { Button } from "@heroui/button";
+import { Tooltip } from "@heroui/tooltip";
+import { Alert } from "@heroui/alert";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -56,149 +60,133 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <Theme className="light-theme" accentColor="mint" panelBackground="translucent" grayColor="sand" radius="large" scaling="100%" hasBackground={false}>
-            <Box className={kcClsx("kcLoginClass")}>
-                <Box id="kc-header" className={kcClsx("kcHeaderClass")}>
-                    <Heading id="kc-header-wrapper" style={{textTransform: "uppercase"}}>{msg("loginTitleHtml", realm.displayNameHtml)}</Heading>
-                </Box>
-
-                <Box>
-                    <Card asChild>
-                    <Box className={kcClsx("kcFormCardClass")} >
-                    <header className={kcClsx("kcFormHeaderClass")}>
-                        {enabledLanguages.length > 1 && (
-                            <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
-                                <div id="kc-locale-wrapper" className={kcClsx("kcLocaleWrapperClass")}>
-                                    <div id="kc-locale-dropdown" className={clsx("menu-button-links", kcClsx("kcLocaleDropDownClass"))}>
-                                        <Button
-                                            tabIndex={1}
-                                            // id="kc-current-locale-link"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                            aria-controls="language-switch1"
-                                            aria-label={msgStr("languages")}
+        <div className="flex flex-col h-screen items-center">
+            <h1 className="
+                flex
+                z-10 sm:z-0
+                w-full h-20 font-bold uppercase
+                justify-start sm:justify-center
+                text-4xl sm:text-6xl
+                ml-16 sm:ml-0
+                mt-4 sm:mt-[15vh] -mb-6 sm:mb-[5vh]
+                text-gray-700 dark:text-slate-300
+            ">
+                {msg("loginTitleHtml", realm.displayNameHtml)}
+            </h1>
+            <Card
+                className="
+                    h-full sm:h-auto
+                    w-full sm:w-96
+                "
+                isBlurred
+                shadow="sm"
+            >
+                <CardHeader className="flex-col items-centre">
+                    {enabledLanguages.length > 1 && (
+                        <div className="flex w-full justify-end items-center">
+                            <Select
+                                className="w-36"
+                                size="sm"
+                                variant="faded"
+                                startContent={<Icon icon="bi:translate" />}
+                                defaultSelectedKeys={[currentLanguage.languageTag]}
+                                items={enabledLanguages}
+                            >
+                                {(language) => (
+                                    <SelectItem
+                                        key={language.languageTag}
+                                        textValue={language.label}
+                                        href={language.href}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                        <Chip
+                                            size="sm"
+                                            radius="sm"
+                                            variant="faded"
                                         >
-                                            <Icon icon="bi:translate" /> {currentLanguage.label} <Icon icon="bi:chevron-down" />
-                                        </Button>
-                                        <ul
-                                            role="menu"
-                                            tabIndex={-1}
-                                            aria-labelledby="kc-current-locale-link"
-                                            aria-activedescendant=""
-                                            id="language-switch1"
-                                            className={kcClsx("kcLocaleListClass")}
-                                            style={{ backgroundColor: "Transparent" }}
-                                        >
-                                            <Card style={{ height: 180 }}>
-                                            <ScrollArea>
-                                                {enabledLanguages.map(({ languageTag, label, href }, i) => (
-                                                    <li key={languageTag} className={kcClsx("kcLocaleListItemClass")} role="none">
-                                                        <Link role="menuitem" id={`language-${i + 1}`} href={href}>
-                                                            {label}
-                                                        </Link>
-                                                        {/* <a role="menuitem" id={`language-${i + 1}`} className={kcClsx("kcLocaleItemClass")} href={href}>
-                                                            {label}
-                                                        </a> */}
-                                                    </li>
-                                                ))}
-                                            </ScrollArea>
-                                            </Card>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        {(() => {
-                            const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
-                                <Heading size="4">{headerNode}</Heading>
-                            ) : (
-                                <Box>
-                                    <Flex gap="1rem" align="center" justify="center">
-                                        <Text size="5">{auth.attemptedUsername}</Text>
-                                        <Tooltip aria-label={msgStr("restartLoginTooltip")} content={msg("restartLoginTooltip")} side="right">
-                                            <Link href={url.loginRestartFlowUrl} style={{lineHeight: "0"}}>
-                                                <IconButton size="1" variant="ghost" color="gray">
-                                                    <Icon icon="mdi:restart" />
-                                                </IconButton>
-                                            </Link>
-                                        </Tooltip>
-                                    </Flex>
-                                </Box>
-                            );
-
-                            if (displayRequiredFields) {
-                                return (
-                                    <div className={kcClsx("kcContentWrapperClass")}>
-                                        <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
-                                            <span className="subtitle">
-                                                <Text color="crimson">*</Text>
-                                                <Text>{msg("requiredFields")}</Text>
-                                            </span>
+                                            {language.languageTag}
+                                        </Chip>
+                                        {language.label}
                                         </div>
-                                        <div className="col-md-10">{node}</div>
-                                    </div>
-                                );
-                            }
-
-                            return node;
-                        })()}
-                    </header>
-                    <Box id="kc-content">
-                        <div id="kc-content-wrapper">
-                            {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-                            {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
-                                <Badge variant="surface" size="3" style={{width: "100%"}} color={
-                                                message.type === "success" ? "green" : 
-                                                message.type === "warning" ? "orange" : 
-                                                message.type === "error" ? "crimson" : 
-                                                message.type === "info" ? "blue" : "gray" }>
-                                    <Flex gap="0.5rem" align="center" style={{padding: "0.5rem 1rem"}}>
-                                        <Text size="5" style={{lineHeight: "0"}}>
-                                            <Icon icon={
-                                                message.type === "success" ? "bi:check-circle" : 
-                                                message.type === "warning" ? "bi:exclamation-triangle" : 
-                                                message.type === "error" ? "bi:exclamation-circle" : 
-                                                message.type === "info" ? "bi:info-circle" : "bi:info-circle" } />
-                                        </Text>
-                                        <Text as="p" wrap="balance" size="4" trim="end" dangerouslySetInnerHTML={{
-                                            // __html: kcSanitize(message.summary)
-                                            __html: kcSanitize(message.summary)
-                                        }}></Text>
-                                    </Flex>
-                                </Badge>
-                            )}
-                            {children}
-                            {auth !== undefined && auth.showTryAnotherWayLink && (
-                                <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
-                                    <div className={kcClsx("kcFormGroupClass")}>
-                                        <input type="hidden" name="tryAnotherWay" value="on" />
-                                        <Link
-                                            href="#"
-                                            id="try-another-way"
-                                            onClick={() => {
-                                                document.forms["kc-select-try-another-way-form" as never].submit();
-                                                return false;
-                                            }}
-                                        >
-                                            {msg("doTryAnotherWay")}
-                                        </Link>
-                                    </div>
-                                </form>
-                            )}
-                            {socialProvidersNode}
-                            {displayInfo && (
-                                <div id="kc-info" className={kcClsx("kcSignUpClass")}>
-                                    <Flex width="100%" height="56px" align="center" justify="center">
-                                        {infoNode}
-                                    </Flex>
-                                </div>
-                            )}
+                                    </SelectItem>
+                                )}
+                            </Select>
                         </div>
-                    </Box>
-                    </Box>
-                    </Card>
-                </Box>
-            </Box>
-        </Theme>
+                    )}
+                    {(() => {
+                        const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
+                            <h1 className="text-lg sm:text-2xl font-semibold">{headerNode}</h1>
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <span className="text-base sm:text-lg font-normal ">{auth.attemptedUsername}</span>
+                                <Tooltip content={msg("restartLoginTooltip")}>
+                                    <a aria-label={msgStr("restartLoginTooltip")} href={url.loginRestartFlowUrl}>
+                                        <Button isIconOnly size="sm" color="primary" variant="light">
+                                            <Icon icon="mdi:restart" />
+                                        </Button>
+                                    </a>
+                                </Tooltip>
+                            </div>
+                        );
+
+                        if (displayRequiredFields) {
+                            return (
+                                <div className="flex flex-col w-full items-center gap-2">
+                                    <div>{node}</div>
+                                    <div className="flex w-full justify-end items-center gap-1 mr-16">
+                                        <span className="text-danger">*</span>
+                                        <span>{msg("requiredFields")}</span>
+                                    </div>
+                                </div>
+                            );
+                        }
+
+                        return node;
+                    })()}
+                    {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
+                    {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
+                        <Alert
+                            className="py-2 items-center"
+                            variant="faded"
+                            color={
+                                message.type === "success" ? "success" :
+                                message.type === "warning" ? "warning" :
+                                message.type === "error" ? "danger" :
+                                message.type === "info" ? "primary" :
+                                "default"
+                            }
+                            title={kcSanitize(message.summary)}
+                        />
+                    )}
+                </CardHeader>
+                <CardBody>
+                    {children}
+                    {auth !== undefined && auth.showTryAnotherWayLink && (
+                        <form action={url.loginAction} method="post" className="flex justify-center">
+                            <input type="hidden" name="tryAnotherWay" value="on" />
+                            <a
+                                href="#"
+                                id="try-another-way"
+                                onClick={() => {
+                                    document.forms["kc-select-try-another-way-form" as never].submit();
+                                    return false;
+                                }}
+                            >
+                                {msg("doTryAnotherWay")}
+                            </a>
+                        </form>
+                    )}
+                    {socialProvidersNode}
+                </CardBody>
+                {displayInfo && (
+                    <>
+                        <Divider />
+                        <CardFooter className="flex items-center justify-center">
+                            {infoNode}
+                        </CardFooter>
+                    </>
+                )}
+            </Card>
+        </div>
     );
 }
