@@ -1,49 +1,49 @@
 npx keycloakify add-story
 npx keycloakify eject-page
 https://my-theme.keycloakify.dev
-docker run .....
+npx keycloakify start-keycloak
 
 [x]: Template.tsx (Layout common to every page)
 [x]: UserProfileFormFields.tsx (Renders the form of the register.ftl, login-update-profile.ftl, update-email.ftl and idp-review-user-profile.ftl)
 [x]: login.ftl
-    [ ]: Better separation for With Providers
 [x]: login-username.ftl
-    [ ]: Better separation for With Providers
-[ ]: login-password.ftl
-[ ]: webauthn-authenticate.ftl
-[ ]: webauthn-register.ftl
+[x]: login-password.ftl
+[x]: webauthn-authenticate.ftl
+[x]: webauthn-register.ftl
 [x]: register.ftl
-[ ]: info.ftl
-[ ]: error.ftl
-[ ]: login-reset-password.ftl
-[ ]: login-verify-email.ftl
-[ ]: terms.ftl
-[ ]: login-oauth2-device-verify-user-code.ftl
-[ ]: login-oauth-grant.ftl
-[ ]: login-otp.ftl
+[x]: info.ftl
+[x]: error.ftl
+[x]: login-reset-password.ftl
+[x]: login-verify-email.ftl
+[x]: terms.ftl
+[x]: login-oauth2-device-verify-user-code.ftl
+[x]: login-oauth-grant.ftl
+[x]: login-otp.ftl
 [x]: login-update-profile.ftl
-[ ]: login-update-password.ftl
-[ ]: login-idp-link-confirm.ftl
-[ ]: login-idp-link-email.ftl
-[ ]: login-page-expired.ftl
-[ ]: login-config-totp.ftl
-[ ]: logout-confirm.ftl
+[x]: login-update-password.ftl
+[x]: login-idp-link-confirm.ftl
+[x]: login-idp-link-email.ftl
+[x]: login-page-expired.ftl
+[x]: login-config-totp.ftl
+[x]: logout-confirm.ftl
 [x]: idp-review-user-profile.ftl
 [x]: update-email.ftl
-[ ]: select-authenticator.ftl
-[ ]: saml-post-form.ftl
-[ ]: delete-credential.ftl
-[ ]: code.ftl
-[ ]: delete-account-confirm.ftl
-[ ]: frontchannel-logout.ftl
-[ ]: login-recovery-authn-code-config.ftl
-[ ]: login-recovery-authn-code-input.ftl
-[ ]: login-reset-otp.ftl
-[ ]: login-x509-info.ftl
-[ ]: webauthn-error.ftl
-[ ]: login-passkeys-conditional-authenticate.ftl
-[ ]: login-idp-link-confirm-override.ftl
-[ ]: The page you're looking for isn't listed here
+[x]: select-authenticator.ftl
+[x]: saml-post-form.ftl
+[x]: delete-credential.ftl
+[x]: code.ftl
+[x]: delete-account-confirm.ftl
+[x]: frontchannel-logout.ftl
+[x]: login-recovery-authn-code-config.ftl
+[x]: login-recovery-authn-code-input.ftl
+[x]: login-reset-otp.ftl
+[x]: login-x509-info.ftl
+[x]: webauthn-error.ftl
+[x]: login-passkeys-conditional-authenticate.ftl
+    [ ]: This page is WEIRD
+[x]: login-idp-link-confirm-override.ftl
+[x]: The page you're looking for isn't listed here
+    [x]: this is for extra pages I would like to add
 
 
 [ ]: Account page (SPA)

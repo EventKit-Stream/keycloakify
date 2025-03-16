@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-// import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
@@ -15,6 +14,7 @@ import { Chip } from "@heroui/chip";
 import { Button } from "@heroui/button";
 import { Tooltip } from "@heroui/tooltip";
 import { Alert } from "@heroui/alert";
+import { Link } from "@heroui/link";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -62,21 +62,22 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <div className="flex flex-col h-screen items-center">
             <h1 className="
-                flex
+                absolute
+                w-full
                 z-10 sm:z-0
-                w-full h-20 font-bold uppercase
-                justify-start sm:justify-center
+                text-left sm:text-center
+                font-bold uppercase
                 text-4xl sm:text-6xl
-                ml-16 sm:ml-0
-                mt-4 sm:mt-[15vh] -mb-6 sm:mb-[5vh]
                 text-gray-700 dark:text-slate-300
             ">
                 {msg("loginTitleHtml", realm.displayNameHtml)}
             </h1>
             <Card
                 className="
-                    h-full sm:h-auto
+                    mt-0 sm:mt-24
+                    rounded-none sm:rounded-2xl
                     w-full sm:w-96
+                    h-svh sm:h-fit
                 "
                 isBlurred
                 shadow="sm"
@@ -159,21 +160,21 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         />
                     )}
                 </CardHeader>
-                <CardBody>
+                <CardBody className="flex flex-col gap-4">
                     {children}
                     {auth !== undefined && auth.showTryAnotherWayLink && (
                         <form action={url.loginAction} method="post" className="flex justify-center">
                             <input type="hidden" name="tryAnotherWay" value="on" />
-                            <a
+                            <Link
                                 href="#"
                                 id="try-another-way"
-                                onClick={() => {
+                                onPress={() => {
                                     document.forms["kc-select-try-another-way-form" as never].submit();
                                     return false;
                                 }}
                             >
                                 {msg("doTryAnotherWay")}
-                            </a>
+                            </Link>
                         </form>
                     )}
                     {socialProvidersNode}
@@ -181,7 +182,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 {displayInfo && (
                     <>
                         <Divider />
-                        <CardFooter className="flex items-center justify-center">
+                        <CardFooter className="flex flex-col items-center justify-start">
                             {infoNode}
                         </CardFooter>
                     </>

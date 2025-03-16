@@ -468,8 +468,7 @@
             "profile.attributes.favourite_pet": "Favourite Pet",
             "profile.attributes.favourite_pet.cat": "Cat",
             "profile.attributes.favourite_pet.dog": "Dog",
-            "profile.attributes.favourite_pet.bird": "Bird",
-            "profile.attributes.phoneNumber": "Phone Number"
+            "profile.attributes.favourite_pet.bird": "Bird"
         },
         "it": {
             "profile.attributes.favourite_pet": ""
@@ -478,8 +477,7 @@
             "profile.attributes.favourite_pet": "Mascota favorita",
             "profile.attributes.favourite_pet.cat": "Gato",
             "profile.attributes.favourite_pet.dog": "Perro",
-            "profile.attributes.favourite_pet.bird": "Pájaro",
-            "profile.attributes.phoneNumber": "Numeros"
+            "profile.attributes.favourite_pet.bird": "Pájaro"
         },
         "cs": {
             "profile.attributes.favourite_pet": ""
@@ -1066,6 +1064,7 @@
                     "consentRequired": false,
                     "config": {
                         "introspection.token.claim": "true",
+                        "userinfo.token.claim": "true",
                         "id.token.claim": "true",
                         "access.token.claim": "true",
                         "claim.name": "clientAddress",
@@ -1081,6 +1080,7 @@
                     "consentRequired": false,
                     "config": {
                         "introspection.token.claim": "true",
+                        "userinfo.token.claim": "true",
                         "id.token.claim": "true",
                         "access.token.claim": "true",
                         "claim.name": "client_id",
@@ -1096,6 +1096,7 @@
                     "consentRequired": false,
                     "config": {
                         "introspection.token.claim": "true",
+                        "userinfo.token.claim": "true",
                         "id.token.claim": "true",
                         "access.token.claim": "true",
                         "claim.name": "clientHost",
@@ -1716,14 +1717,14 @@
                 "subComponents": {},
                 "config": {
                     "allowed-protocol-mapper-types": [
-                        "saml-role-list-mapper",
-                        "saml-user-property-mapper",
                         "oidc-sha256-pairwise-sub-mapper",
-                        "saml-user-attribute-mapper",
-                        "oidc-address-mapper",
+                        "oidc-usermodel-attribute-mapper",
                         "oidc-full-name-mapper",
+                        "oidc-address-mapper",
                         "oidc-usermodel-property-mapper",
-                        "oidc-usermodel-attribute-mapper"
+                        "saml-user-property-mapper",
+                        "saml-role-list-mapper",
+                        "saml-user-attribute-mapper"
                     ]
                 }
             },
@@ -1753,14 +1754,14 @@
                 "subComponents": {},
                 "config": {
                     "allowed-protocol-mapper-types": [
-                        "oidc-sha256-pairwise-sub-mapper",
-                        "oidc-usermodel-attribute-mapper",
+                        "oidc-address-mapper",
                         "oidc-full-name-mapper",
-                        "saml-user-property-mapper",
-                        "oidc-usermodel-property-mapper",
-                        "saml-user-attribute-mapper",
                         "saml-role-list-mapper",
-                        "oidc-address-mapper"
+                        "oidc-usermodel-attribute-mapper",
+                        "saml-user-property-mapper",
+                        "saml-user-attribute-mapper",
+                        "oidc-usermodel-property-mapper",
+                        "oidc-sha256-pairwise-sub-mapper"
                     ]
                 }
             },
@@ -1801,7 +1802,7 @@
                 "subComponents": {},
                 "config": {
                     "kc.user.profile.config": [
-                        "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"favourite_pet\",\"displayName\":\"${profile.attributes.favourite_pet}\",\"validations\":{\"options\":{\"options\":[\"cat\",\"dog\",\"bird\"]}},\"annotations\":{\"inputType\":\"select\",\"inputOptionLabelsI18nPrefix\":\"profile.attributes.favourite_pet\"},\"required\":{\"roles\":[\"admin\",\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"phoneNumber\",\"displayName\":\"${profile.attributes.phoneNumber}\",\"validations\":{\"multivalued\":{\"min\":\"5\",\"max\":\"10\"}},\"annotations\":{},\"required\":{\"roles\":[\"admin\",\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"user-metadata\",\"multivalued\":true}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}"
+                        "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"favourite_pet\",\"displayName\":\"${profile.attributes.favourite_pet}\",\"validations\":{\"options\":{\"options\":[\"cat\",\"dog\",\"bird\"]}},\"annotations\":{\"inputType\":\"select\",\"inputOptionLabelsI18nPrefix\":\"profile.attributes.favourite_pet\"},\"required\":{\"roles\":[\"admin\",\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}"
                     ]
                 }
             }
@@ -2425,18 +2426,18 @@
             "config": {}
         },
         {
-            "alias": "UPDATE_PASSWORD",
-            "name": "Update Password",
-            "providerId": "UPDATE_PASSWORD",
+            "alias": "UPDATE_PROFILE",
+            "name": "Update Profile",
+            "providerId": "UPDATE_PROFILE",
             "enabled": true,
             "defaultAction": false,
             "priority": 30,
             "config": {}
         },
         {
-            "alias": "UPDATE_PROFILE",
-            "name": "Update Profile",
-            "providerId": "UPDATE_PROFILE",
+            "alias": "UPDATE_PASSWORD",
+            "name": "Update Password",
+            "providerId": "UPDATE_PASSWORD",
             "enabled": true,
             "defaultAction": false,
             "priority": 40,

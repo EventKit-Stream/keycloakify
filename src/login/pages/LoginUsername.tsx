@@ -40,8 +40,8 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
                         <div>
                             <Divider />
-                            <h2 className="text-lg">{msg("identity-provider-login-label")}</h2>
-                            <ul className={social.providers.length <= 3 ? "grid grid-cols-1 gap-4" : "grid grid-cols-2 gap-4"}>
+                            <h2 className="text-lg font-semibold text-center mt-2 mb-2">{msg("identity-provider-login-label")}</h2>
+                            <ul className={social.providers.length <= 3 ? "grid grid-cols-1 gap-2" : "grid grid-cols-2 gap-2"}>
                                 {social.providers.map((...[p]) => (
                                     <li key={p.alias}>
                                         <Button
